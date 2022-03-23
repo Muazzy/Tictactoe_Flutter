@@ -257,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
     //for third column
     if (gameSpace[2] == gameSpace[5] &&
-        gameSpace[0] == gameSpace[8] &&
+        gameSpace[2] == gameSpace[8] &&
         gameSpace[2] != '') {
       //showdialog(winner(gameSpace[6]));
       gameSpace[2] == 'X' ? scoreOfX += 1 : scoreOfO += 1;
