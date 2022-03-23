@@ -31,13 +31,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kbgclr,
+      backgroundColor: isTrunOfX ? kXbgclr : kObgclr,
       appBar: AppBar(
         centerTitle: true,
         title: Text(
           'Tic Tac Toe',
           style: TextStyle(
-            color: kforegroundclr,
+            color: isTrunOfX ? kplayerNameX : kplayerNameO,
             fontSize: 20.0,
             fontWeight: FontWeight.w800,
           ),
@@ -50,13 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             icon: Icon(
               Icons.replay_outlined,
-              color: kforegroundclr,
+              color: isTrunOfX ? kplayerNameX : kplayerNameO,
             ),
           )
         ],
-        // backgroundColor: const Color(0xffffe5ec),
-        // backgroundColor: kbgclr,
-        backgroundColor: kbgclr,
+        backgroundColor: isTrunOfX ? kXbgclr : kObgclr,
       ),
       body: Column(
         children: [
@@ -85,7 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w800,
-                  color: kforegroundclr,
+                  color: Colors.red.shade900,
                 ),
               ),
               const SizedBox(height: 10),
@@ -94,7 +92,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
-                  color: koclr,
+                  color: kScoreOclr,
                 ),
               ),
             ],
@@ -109,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.w800,
-                  color: kforegroundclr,
+                  color: Colors.green.shade900,
                 ),
               ),
               const SizedBox(height: 20),
@@ -118,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.bold,
-                  color: kxclr,
+                  color: kScoreXclr,
                 ),
               ),
             ],
@@ -148,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: kgridclr,
+                  color: isTrunOfX ? kplayerNameX : kplayerNameO,
                   width: 1,
                 ),
               ),
@@ -156,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Text(
                   gameSpace[index],
                   style: TextStyle(
-                    color: gameSpace[index] == 'X' ? kxclr : koclr,
+                    color: gameSpace[index] == 'X' ? kScoreXclr : kScoreOclr,
                     fontSize: 45,
                     fontWeight: FontWeight.w500,
                   ),
@@ -176,8 +174,8 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Text(
           isTrunOfX ? 'Turn of X' : 'Turn of O',
           style: TextStyle(
-            fontSize: 16,
-            color: kforegroundclr,
+            fontSize: 20,
+            color: isTrunOfX ? kplayerNameX : kplayerNameO,
             fontWeight: FontWeight.w500,
           ),
         ),
@@ -194,12 +192,14 @@ class _HomeScreenState extends State<HomeScreen> {
         // print(gameSpace[index]);
         // print(gameSpace); //debuging
         filledBoxes += 1;
+        isTrunOfX = !isTrunOfX;
       } else if (!isTrunOfX && gameSpace[index] == '') {
         gameSpace[index] = 'O';
         filledBoxes += 1;
+        isTrunOfX = !isTrunOfX;
       }
       //switching the turn
-      isTrunOfX = !isTrunOfX;
+
       // print(isTrunOfX); //debugging
       //checking if someone won or not.
       checkTheWinner();
@@ -299,8 +299,8 @@ class _HomeScreenState extends State<HomeScreen> {
       onTap: clearBoard(),
       playerName: playerName,
       winOrTie: winOrTie,
-      bgClr: playerName == 'X' ? Colors.green.shade50 : Colors.red.shade50,
-      iconBg: playerName == 'X' ? Colors.green.shade300 : Colors.red.shade300,
+      bgClr: playerName == 'X' ? Colors.green.shade200 : Colors.red.shade100,
+      iconBg: playerName == 'X' ? Colors.green.shade800 : Colors.red.shade700,
     );
   }
 }
